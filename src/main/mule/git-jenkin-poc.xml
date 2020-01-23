@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="9f998ce9-a068-48fb-b794-b4e43a6d39b1" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="jenkinsdemoFlow" doc:id="851bb880-cdb2-49c3-a870-5c731d19e2ef" >
+		<http:listener doc:name="Listener" doc:id="982510a8-b430-4e22-986e-67c8f9ac28a4" config-ref="HTTP_Listener_config" path="/api"/>
+		<set-variable value="#[attributes.queryParams.hello]" doc:name="Set Variable" doc:id="fa66dd22-8f16-4840-890e-662bc2e98b93" variableName="jenkin"/>
+		<set-payload value="#[vars.jenkin]" doc:name="Set Payload" doc:id="381bf5a5-3d37-4d99-9580-54a9a960b28f" />
+	</flow>
+</mule>
